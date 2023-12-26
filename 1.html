@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid-19</title>
+
+     <!--  JS & jQuery  -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+     <script src="1.js"></script>
+ 
+    <!--  CSS eksternal atau tambahkan gaya langsung ke sini -->
+    <style>
+        /* style body , button, data */
+        body {
+            animation: backgroundBlink 5s infinite;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: #f3f4f6;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            margin: 30px auto;
+            padding: 20px;
+            max-width: 400px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .app-title {
+            color: green;
+        }
+
+        input {
+            border: 2px solid black;
+            border-radius: 5px;
+            font-size: 1.3rem;
+            padding: 8px;
+            margin-top: 10px;
+        }
+
+        button {
+            background-color: green;
+            border: 0;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1.3rem;
+            padding: 8px 20px;
+            margin-top: 10px;
+        }
+
+        .card-statistik {
+            display: none;
+            background-color: #fff;
+            border-radius: 5px;
+            margin: 20px 0;
+            padding: 15px;
+        }
+
+        .statistik-title {
+            color: green;
+            font-size: 2rem;
+            margin-bottom: 0;
+        }
+
+        .statistik-subtitle {
+            color: black;
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .statistik-item {
+            flex-basis: 45%;
+            margin-bottom: 15px;
+        }
+
+        .data-title {
+            color: red;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .data-value {
+            color: green;
+            font-size: 1.2rem;
+            margin-bottom: 0;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+
+        /* Style Progres bar animasi */
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        /* style  spiner  */
+        .spinner {
+            border: 4px solid white;
+            border-top: 4px solid green;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 10px;
+        }
+        .p {
+            color: blue;
+        }
+
+        /* efek animasi perputaran spiner */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Animasi latar belakang berkedip */
+        @keyframes backgroundBlink {
+            0% { background-image: url('https://akcdn.detik.net.id/visual/2022/05/09/aktivitas-warga-saat-ppkm-diperpanjang-cnbc-indonesiatri-susilo-3_169.jpeg?w=715&q=90'); } 
+            50% { background-image: url('https://riaupos.co/thumb/440-iran-corona.jpg'); }
+            100% { background-image: url('https://gdb.voanews.com/D601E4C4-2557-4146-8ED7-4D2051C0FAB4_w1023_r1_s.jpg'); }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="app-title">Data Covid 19</h1>
+        <input type="text" id="name" name="name" placeholder="Masukkan nama negara">
+        <button type="button">Cek Informasi</button>
+ 
+        <div class="card-statistik">
+            <h2 class="statistik-title">Statistik Covid</h2>
+            <h3 class="statistik-subtitle">
+                Negara :
+                <span class="nama-negara">Indonesia</span>
+            </h3>
+
+            <!-- Data kasus Aktif -->
+            <div class="flex-container">
+                <div class="statistik-item">
+                    <p class="data-title">Kasus Aktif</p>
+                    <p class="data-value active-case"></p>
+                </div>
+
+                <!-- Data kasus Kritis -->
+                <div class="statistik-item">
+                    <p class="data-title">Kasus Kritis</p>
+                    <p class="data-value critical-case"></p>
+                </div>
+
+                <!-- Data Kasus Baru -->
+                <div class="statistik-item">
+                    <p class="data-title">Kasus Baru</p>
+                    <p class="data-value new-case"></p>
+                </div>
+
+                <!-- Data sembuh -->
+                <div class="statistik-item">
+                    <p class="data-title">Sembuh</p>
+                    <p class="data-value recovered"></p>
+                </div>
+            </div>
+            <!-- akan menampilkan pesan eror jika data tidak valid / tidak temukan -->
+            <p class="error-message"></p>
+        </div>
+    </div>
+    <!-- Progres bar -->
+    <div class="loading" style="display: none;">
+        <div class="spinner"></div>
+        <p class="p">Sedang di proses, tunggu sebentar</p>
+    </div>
+</body>
+</html>
